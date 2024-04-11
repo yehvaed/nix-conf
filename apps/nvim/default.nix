@@ -1,6 +1,14 @@
 { pkgs, ... }:
 let 
 inherit (builtins) readFile;
+
+withConfig = plugin: type: configFile:
+{
+  inherit plugin;
+  inherit type;
+  config = readFile(configFile);
+};
+
 in {
   nix-config.apps.nvim = {
     home = { pkgs, ... }: {
@@ -14,30 +22,14 @@ in {
           cmp_luasnip
           nvim-treesitter.withAllGrammars
 
-          {
-            plugin = nvim-cmp;
-            type = "lua";
-            config = readFile(./plugins/editor/nvim-cmp.lua);
-          }
-          {
-            plugin = nvim-lspconfig;
-            type = "lua";
-            config = readFile(./plugins/editor/nvim-lspconfig.lua);
-          }
+          (withConfig nvim-cmp "lua" ./plugins/editor/nvim-cmp.lua)
+          (withConfig nvim-lspconfig "lua" ./plugins/editor/nvim-lspconfig.lua)
 
           # pickers
-          {
-            plugin = fzf-lua;
-            type = "lua";
-            config = readFile (./plugins/pickers/fzf-lua.lua);
-          }
+          (withConfig fzf-lua "lua" ./plugins/pickers/fzf-lua.lua)
 
           # themes
-          {
-            plugin = neovim-ayu;
-            type = "lua";
-            config = readFile (./plugins/themes/ayu.lua);
-          }
+          (withConfig neovim-ayu "lua" ./plugins/themes/ayu.lua)
   
           # icons
           nvim-web-devicons

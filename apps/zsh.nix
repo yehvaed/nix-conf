@@ -1,36 +1,30 @@
 { lib, ... }:
 let
   inherit (builtins) readFile;
+
+  withConfig = plugin: initFile:
+  {
+    name = plugin.pname;
+    src = plugin;
+    file = initFile;
+  };
+
+
 in {
   nix-config.apps.zsh = {
     home = { pkgs, ... }: {
       programs.zsh = {
         plugins = with pkgs; [
           # command line
-          {
-            name = "F-Sy-H";
-            src = zsh-f-sy-h;
-            file = "share/zsh/site-functions/F-Sy-H.plugin.zsh";
-          }
-          {
-            name = "zsh-vi-mode";
-            src = zsh-vi-mode;
-            file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
-          }
+          (withConfig zsh-f-sy-h "share/zsh/site-functions/F-Sy-H.plugin.zsh")
+          (withConfig zsh-vi-mode "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh")
+          
 
           # pickers
-          {
-            name = "fzf-tab";
-            src = zsh-fzf-tab;
-            file = "share/fzf-tab/fzf-tab.plugin.zsh";
-          }
+          (withConfig zsh-fzf-tab "share/fzf-tab/fzf-tab.plugin.zsh")
 
           # misc
-          {
-            name = "zsh-defer";
-            src = zsh-defer;
-            file = "share/zsh-defer/zsh-defer.plugin.zsh";
-          }
+          (withConfig zsh-defer "share/zsh-defer/zsh-defer.plugin.zsh")
         ];
 
         oh-my-zsh = {

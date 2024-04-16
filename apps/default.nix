@@ -1,7 +1,7 @@
 { lib, ... }:
 
 {
-  imports = [ ./nvim ./tmux ./zsh.nix ];
+  imports = [ ./nvim ./tmux ./zsh ];
 
   nix-config.apps.init = {
     enable = true;

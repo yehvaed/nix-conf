@@ -2,7 +2,7 @@
 let
   inherit (builtins) readFile;
 
-  withConfig = plugin: initFile:
+  withConfigFile = plugin: initFile:
   {
     name = plugin.pname;
     src = plugin;
@@ -16,15 +16,16 @@ in {
       programs.zsh = {
         plugins = with pkgs; [
           # command line
-          (withConfig zsh-f-sy-h "share/zsh/site-functions/F-Sy-H.plugin.zsh")
-          (withConfig zsh-vi-mode "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh")
+          (withConfigFile zsh-f-sy-h "share/zsh/site-functions/F-Sy-H.plugin.zsh")
+          (withConfigFile zsh-vi-mode "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh")
           
 
           # pickers
-          (withConfig zsh-fzf-tab "share/fzf-tab/fzf-tab.plugin.zsh")
+          (withConfigFile zsh-fzf-tab "share/fzf-tab/fzf-tab.plugin.zsh")
 
           # misc
-          (withConfig zsh-defer "share/zsh-defer/zsh-defer.plugin.zsh")
+          (withConfigFile zsh-you-should-use "share/zsh/plugins/you-should-use/you-should-use.plugin.zsh")
+          (withConfigFile zsh-defer "share/zsh-defer/zsh-defer.plugin.zsh")
         ];
 
         oh-my-zsh = {
@@ -40,6 +41,10 @@ in {
         initExtra = ''
           zsh-defer bindkey "^r" "fzf-history-widget"
           eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
+
+          ${readFile ./functions.zsh}
+
+          alias \$=""
         '';
 
         shellAliases = {

@@ -1,13 +1,18 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let 
 inherit (builtins) readFile;
+inherit (lib.strings) hasSuffix;
 
-withConfig = plugin: type: configFile:
+withConfig = plugin: type: config:
 {
   inherit plugin;
   inherit type;
-  config = readFile(configFile);
+  inherit config;
+
 };
+
+withConfigFile = plugin: configFile:
+  withConfig plugin (if hasSuffix ".lua" configFile then "lua" else "vim") (readFile(configFile));
 
 in {
   nix-config.apps.nvim = {
@@ -15,6 +20,9 @@ in {
       programs.neovim = {
         plugins = with pkgs.vimPlugins; [
           # editors     
+          (withConfigFile nvim-cmp ./plugins/editor/nvim-cmp.lua)
+          (withConfigFile nvim-lspconfig ./plugins/editor/nvim-lspconfig.lua)
+          (withConfig comment-nvim "lua" "require('Comment').setup()")
           luasnip
           lspkind-nvim
           cmp-nvim-lsp
@@ -22,14 +30,11 @@ in {
           cmp_luasnip
           nvim-treesitter.withAllGrammars
 
-          (withConfig nvim-cmp "lua" ./plugins/editor/nvim-cmp.lua)
-          (withConfig nvim-lspconfig "lua" ./plugins/editor/nvim-lspconfig.lua)
-
           # pickers
-          (withConfig fzf-lua "lua" ./plugins/pickers/fzf-lua.lua)
+          (withConfigFile fzf-lua ./plugins/pickers/fzf-lua.lua)
 
           # themes
-          (withConfig neovim-ayu "lua" ./plugins/themes/ayu.lua)
+          (withConfigFile neovim-ayu ./plugins/themes/ayu.lua)
   
           # icons
           nvim-web-devicons

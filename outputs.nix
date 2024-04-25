@@ -1,4 +1,4 @@
-inputs @ { flake-parts, nix-config-modules, ... }: 
+inputs @ { flake-parts, nix-config-modules, nixos-wsl, ... }: 
 
 let 
   flakeModule = {
@@ -6,9 +6,14 @@ let
       nix-config-modules.flakeModule
       ./hosts
       ./apps
-    ];
-
+   ];
+    
     systems = [];
+
+
+   nix-config.modules.nixos = [
+   	nixos-wsl.nixosModules.wsl
+   ];
   };
 
 in

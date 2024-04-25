@@ -9,6 +9,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-parts.url = "github:hercules-ci/flake-parts";
+    nixos-wsl.url = "github:nix-community/nixos-wsl";
   };
   
   outputs = inputs:

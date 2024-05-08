@@ -13,6 +13,8 @@
        programs.zsh.enable = true;
     };
 
-    tags = { development = true; };
+    tags = {
+      development = true;
+    };
   };
 }

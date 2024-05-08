@@ -7,5 +7,10 @@
     };
   };
 
+  nix-config.defaultTags = {
+    development = false;
+    desktop = false;
+  };
+
   nix-config.homeApps = [ ];
 }

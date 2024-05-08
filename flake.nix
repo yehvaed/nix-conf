@@ -13,5 +13,5 @@
   };
   
   outputs = inputs:
-    import ./outputs.nix (inputs);
+    import ./nix/outputs.nix (inputs);
 }

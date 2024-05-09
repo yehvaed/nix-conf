@@ -49,6 +49,7 @@ in {
 
         shellAliases = {
           cat = "bat";
+          nix-shell = "nix-shell --command zsh";
         };
 
         dotDir = ".config/zsh";

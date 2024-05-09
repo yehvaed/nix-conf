@@ -42,6 +42,7 @@ in {
 
         extraPackages = with pkgs; [
           gopls
+          nodePackages.typescript-language-server
         ];
 
         extraConfig = readFile (./plugins/init.vim);

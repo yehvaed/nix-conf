@@ -6,7 +6,8 @@ local defaultConfig = {
 }
 
 local servers = {
-  gopls = {}
+  gopls = {},
+  tsserver = {},
 }
 
 for k, v in pairs(servers) do

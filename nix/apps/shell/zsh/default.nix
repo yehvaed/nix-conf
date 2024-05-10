@@ -30,7 +30,6 @@ in {
 
         oh-my-zsh = {
           enable = true;
-          theme = "af-magic";
           plugins = [ "git" "history" ];
         };
 
@@ -45,6 +44,7 @@ in {
           ${readFile ./functions.zsh}
 
           alias \$=""
+          export PS1="$(tput setaf 2)$(tput bold)\$ $(tput sgr0)"
         '';
 
         shellAliases = {

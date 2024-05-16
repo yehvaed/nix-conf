@@ -3,15 +3,18 @@
 {
   imports = [ 
     # desktop apps
-    ./desktop/xmonad 
-    
+    ./guis/xmonad 
+    ./guis/alacritty
+    ./guis/greetd
+
     # shell tools
-    ./shell/nvim 
-    ./shell/tmux 
-    ./shell/zsh 
-    ./shell/git.nix
+    ./tools/nvim 
+    ./tools/tmux 
+    ./tools/zsh 
+    ./tools/git.nix
 
     # rest
+    ./fonts.nix
     ./init.nix
   ];
 }

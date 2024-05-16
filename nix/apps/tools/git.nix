@@ -49,6 +49,6 @@
       ];
     };
 
-    tags = [ "development" ];
+    tags = [ "tools" ];
   };
 }

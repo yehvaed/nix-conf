@@ -8,8 +8,13 @@
   };
 
   nix-config.defaultTags = {
-    development = false;
-    desktop = false;
+    # desktop && guis 
+    xmonad = false;
+    login = false;
+    terminal = false;
+
+    # shared
+    tools = true;
   };
 
   nix-config.homeApps = [ ];

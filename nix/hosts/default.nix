@@ -1,4 +1,4 @@
 { ... }:
 {
-  imports = [ ./wsl ./devbox-machine ];
+  imports = [ ./wsl ./devbox ];
 }

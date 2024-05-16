@@ -10,6 +10,7 @@
     };
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixos-wsl.url = "github:nix-community/nixos-wsl";
+    alacritty-theme.url = "github:alexghr/alacritty-theme.nix";
   };
   
   outputs = inputs:

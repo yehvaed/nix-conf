@@ -18,6 +18,6 @@ in {
       };
     };
 
-    tags = [ "development" ];
+    tags = [ "tools" ];
   };
 }

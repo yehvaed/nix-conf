@@ -6,6 +6,7 @@
     ./guis/xmonad 
     ./guis/alacritty
     ./guis/greetd
+    ./guis/rofi
 
     # shell tools
     ./tools/nvim 

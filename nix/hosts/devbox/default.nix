@@ -10,19 +10,18 @@
     nixos = {pkgs, ...}:{
        imports = [ ./configuration.nix ];
 
-       networking.hostnName = "devbox";
-
        users.users."${username}" = {
 	      shell = pkgs.zsh;
-	      extraGroups = [ "wheel" ];
+	      extraGroups = [ "wheel" "audio" ];
        };
 
-       security.sudo.extraRules = [
-          { 
-            users = [ username ];
+       security.sudo.extraRules = [{ 
+          users = [ username ];
+          commands = [{ 
+            command = "ALL";
             options = [ "NOPASSWD" ];
-          }
-       ];
+          }];
+       }];
        
        programs.zsh.enable = true;
     };

@@ -10,8 +10,13 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.systemd.enable = true;
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.hostName = "devbox";
   nix.settings.experimental-features = [ "nix-command" "flakes" ]; 
+  
   hardware.opengl.enable = true;
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.support32Bit = true;
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
   #

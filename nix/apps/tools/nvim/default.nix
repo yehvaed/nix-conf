@@ -40,11 +40,7 @@ in {
           nvim-web-devicons
         ];
 
-        extraPackages = with pkgs; [
-          gopls
-          nodePackages.typescript-language-server
-        ];
-
+        extraPackages = import ./plugins/editor/nvim-lspconfig.nix { inherit pkgs; };
         extraConfig = readFile (./plugins/init.vim);
 
         viAlias = true;

@@ -7,6 +7,7 @@
     ./guis/alacritty
     ./guis/greetd
     ./guis/rofi
+    ./guis/qutebrowser
 
     # shell tools
     ./tools/nvim 

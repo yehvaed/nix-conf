@@ -3,7 +3,6 @@ import XMonad.Layout.Gaps
 import XMonad.Layout.Spacing
 import XMonad.Util.EZConfig (additionalKeysP)
 
-
 myConfig = def { 
   terminal = "alacritty", 
   borderWidth = 2,

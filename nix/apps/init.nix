@@ -12,6 +12,7 @@
     xmonad = false;
     login = false;
     terminal = false;
+    browser = false;
 
     # shared
     tools = true;

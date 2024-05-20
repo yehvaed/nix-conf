@@ -30,6 +30,7 @@
       xmonad = true;
       login = true;
       terminal = true;
+      browser = true;
     };
   };
 }

@@ -1,6 +1,6 @@
 { nixos-wsl, pkgs, ...}:
 {
-  nix-config.hosts.wsl = {
+  nix-config.hosts.wsl = rec {
     kind = "nixos";
     system = "x86_64-linux";
 
@@ -9,7 +9,7 @@
 
     nixos = {pkgs, ...}:{
        imports = [ ./configuration.nix ];
-       users.users.nixos.shell = pkgs.zsh;
+       users.users.${username}.shell = pkgs.zsh;
        programs.zsh.enable = true;
     };
 

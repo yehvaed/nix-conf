@@ -4,6 +4,7 @@
   imports = [ 
     # desktop apps
     ./guis/xmonad 
+    ./guis/polybar 
     ./guis/alacritty
     ./guis/greetd
     ./guis/rofi

@@ -13,7 +13,7 @@
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
   networking.hostName = "devbox";
   nix.settings.experimental-features = [ "nix-command" "flakes" ]; 
-  
+ 
   hardware.opengl ={
     enable = true;
     driSupport = true;

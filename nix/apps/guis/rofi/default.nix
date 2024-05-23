@@ -1,13 +1,16 @@
 { inputs, ... }:
 let inherit (builtins) readFile;
 in {
-  nix-config.apps.alacritty = {
+  nix-config.apps.rofi = {
     home = { pkgs, ...}: {
       programs.rofi = {
+          extraConfig = {
+            modi = "drun";
+          };
           enable = true;
       };
     };
 
-    tags = [ "xmonad" ];
+    tags = [ "xmonad" "rofi" ];
   };
 }

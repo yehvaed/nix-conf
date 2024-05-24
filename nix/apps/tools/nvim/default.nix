@@ -62,6 +62,6 @@ in {
       programs.zsh.shellAliases = { v = "nvim"; };
     };
 
-    tags = [ "tools" ];
+    tags = [ "essentials" "nvim" ];
   };
 }

@@ -14,15 +14,7 @@
 	      shell = pkgs.zsh;
 	      extraGroups = [ "wheel" "audio" ];
        };
-
-       security.sudo.extraRules = [{ 
-          users = [ username ];
-          commands = [{ 
-            command = "ALL";
-            options = [ "NOPASSWD" ];
-          }];
-       }];
-       
+      
        programs.zsh.enable = true;
     };
 

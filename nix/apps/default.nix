@@ -19,5 +19,8 @@
     # rest
     ./fonts.nix
     ./init.nix
+
+    # helper
+    ./sudo.nix
   ];
 }

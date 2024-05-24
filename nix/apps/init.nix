@@ -13,7 +13,7 @@
     login = false;
     terminal = false;
     browser = false;
-    
+
     # shared
     essentials = true;
 

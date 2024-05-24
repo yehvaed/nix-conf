@@ -2,27 +2,27 @@
 let inherit (builtins) readFile;
 in {
   nix-config.apps.alacritty = {
-    home = { pkgs, ...}: {
+    home = { pkgs, ... }: {
       programs.alacritty = {
-          enable = true;
-          settings = {
-            font = {
-              normal = {
-                family = "FiraCode Nerd Font Propo";
-                style = "Retina";
-              };
-              size = 6;
+        enable = true;
+        settings = {
+          font = {
+            normal = {
+              family = "FiraCode Nerd Font Propo";
+              style = "Retina";
             };
-
-            window = {
-              padding = {
-                x = 4;
-                y = 4;
-              };
-              dynamic_padding = true;
-            };
+            size = 6;
           };
-          settings.import = [ pkgs.alacritty-theme.ayu_dark ];
+
+          window = {
+            padding = {
+              x = 4;
+              y = 4;
+            };
+            dynamic_padding = true;
+          };
+        };
+        settings.import = [ pkgs.alacritty-theme.ayu_dark ];
       };
     };
 

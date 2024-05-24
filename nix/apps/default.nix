@@ -1,19 +1,19 @@
 { lib, ... }:
 
 {
-  imports = [ 
+  imports = [
     # desktop apps
-    ./guis/xmonad 
-    ./guis/polybar 
+    ./guis/xmonad
+    ./guis/polybar
     ./guis/alacritty
     ./guis/greetd
     ./guis/rofi
     ./guis/qutebrowser
 
     # shell tools
-    ./tools/nvim 
-    ./tools/tmux 
-    ./tools/zsh 
+    ./tools/nvim
+    ./tools/tmux
+    ./tools/zsh
     ./tools/git.nix
 
     # rest

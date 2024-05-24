@@ -1,4 +1,1 @@
-{ ... }:
-{
-  imports = [ ./wsl ./devbox ];
-}
+{ ... }: { imports = [ ./wsl ./devbox ]; }

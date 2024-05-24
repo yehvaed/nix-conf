@@ -1,32 +1,25 @@
-{ config, lib, pkgs, ... }:
-{
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+{ config, lib, pkgs, ... }: {
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.systemd.enable = true;
-  boot.kernelParams = [ "i915.force_probe=46a8"];
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  boot.kernelParams = [ "i915.force_probe=46a8" ];
+  networking.networkmanager.enable =
+    true; # Easiest to use and most distros use this by default.
   networking.hostName = "devbox";
-  nix.settings.experimental-features = [ "nix-command" "flakes" ]; 
- 
-  hardware.opengl ={
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  hardware.opengl = {
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
-    extraPackages = with pkgs; [
-      intel-media-driver
-      vaapiVdpau
-      libvdpau-va-gl
-    ];
+    extraPackages = with pkgs; [ intel-media-driver vaapiVdpau libvdpau-va-gl ];
   };
-  environment.sessionVariables = {
-    LIBVA_DRIVER_NAME = "iHD";
-  };
+  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };
   sound.enable = true;
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.support32Bit = true;

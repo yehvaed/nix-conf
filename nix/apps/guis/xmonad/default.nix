@@ -2,21 +2,21 @@
 let inherit (builtins) readFile;
 in {
   nix-config.apps.xmonad = {
-    home = { pkgs, ...}: {
-      xsession.enable = true;
-      xsession.windowManager.xmonad = {
+    home = { pkgs, ... }: {
+      xsession = {
         enable = true;
-        enableContribAndExtras = true;
-        config = ./xmonad.hs;
+        windowManager.xmonad = {
+          enable = true;
+          enableContribAndExtras = true;
+          config = pkgs.substitute { src = ./xmonad.hs; };
+        };
+        importedVariables = [ "DISPLAY" ];
       };
-      xsession.importedVariables = [ "DISPLAY" ];
     };
 
-    nixos ={ pkgs, ... }: {
-       services = {
-        displayManager = {
-          defaultSession = "none+xmonad";
-        };
+    nixos = { pkgs, ... }: {
+      services = {
+        displayManager = { defaultSession = "none+xmonad"; };
         xserver = {
           enable = true;
           windowManager.xmonad = {

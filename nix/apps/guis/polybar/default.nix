@@ -2,7 +2,7 @@
 let inherit (builtins) readFile;
 in {
   nix-config.apps.polybar = {
-    home = { pkgs, ...}: {
+    home = { pkgs, ... }: {
       services.polybar = {
         enable = true;
         package = pkgs.polybarFull;

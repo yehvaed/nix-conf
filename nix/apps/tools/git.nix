@@ -5,48 +5,30 @@
     home = { pkgs, ... }: {
       programs.git = {
         extraConfig = {
-          core = {
-            pager = "delta";
-          };
-          interactive = {
-            diffFilter = "delta --color-only";
-          };
+          core = { pager = "delta"; };
+          interactive = { diffFilter = "delta --color-only"; };
           delta = {
             navigate = true;
             light = false;
           };
-          merge = {
-            conflictstyle = "diff3";
-          };
-          diff = {
-            colorMoved = "default";
-          };
-          init = {
-            defaultBranch = "main";
-          };
+          merge = { conflictstyle = "diff3"; };
+          diff = { colorMoved = "default"; };
+          init = { defaultBranch = "main"; };
           status = {
             # short = true;
           };
-          fetch = {
-            prune = true;
-          };
-          pull = {
-            rebase = false;
-          };
+          fetch = { prune = true; };
+          pull = { rebase = false; };
           pretty = {
-            default = "%Cred%h%Creset - %C(cyan)%an%Creset - %s %Cblue(%cr) %C(green)%d%Creset";
+            default =
+              "%Cred%h%Creset - %C(cyan)%an%Creset - %s %Cblue(%cr) %C(green)%d%Creset";
           };
-          format = {
-            pretty = "default";
-          };
+          format = { pretty = "default"; };
         };
-          enable = true;
+        enable = true;
       };
 
-      
-      home.packages = with pkgs; [
-        delta
-      ];
+      home.packages = with pkgs; [ delta ];
     };
 
     tags = [ "tools" ];

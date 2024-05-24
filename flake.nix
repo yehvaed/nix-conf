@@ -12,7 +12,6 @@
     nixos-wsl.url = "github:nix-community/nixos-wsl";
     alacritty-theme.url = "github:alexghr/alacritty-theme.nix";
   };
-  
-  outputs = inputs:
-    import ./nix/outputs.nix (inputs);
+
+  outputs = inputs: import ./nix/outputs.nix (inputs);
 }

@@ -1,18 +1,18 @@
 { pkgs, lib, ... }:
-let 
-inherit (builtins) readFile;
-inherit (lib.strings) hasSuffix;
+let
+  inherit (builtins) readFile;
+  inherit (lib.strings) hasSuffix;
 
-withConfig = plugin: type: config:
-{
-  inherit plugin;
-  inherit type;
-  inherit config;
+  withConfig = plugin: type: config: {
+    inherit plugin;
+    inherit type;
+    inherit config;
 
-};
+  };
 
-withConfigFile = plugin: configFile:
-  withConfig plugin (if hasSuffix ".lua" configFile then "lua" else "vim") (readFile(configFile));
+  withConfigFile = plugin: configFile:
+    withConfig plugin (if hasSuffix ".lua" configFile then "lua" else "vim")
+    (readFile (configFile));
 
 in {
   nix-config.apps.nvim = {
@@ -35,12 +35,13 @@ in {
 
           # themes
           (withConfigFile neovim-ayu ./plugins/themes/ayu.lua)
-  
+
           # icons
           nvim-web-devicons
         ];
 
-        extraPackages = import ./plugins/editor/nvim-lspconfig.nix { inherit pkgs; };
+        extraPackages =
+          import ./plugins/editor/nvim-lspconfig.nix { inherit pkgs; };
         extraConfig = readFile (./plugins/init.vim);
 
         viAlias = true;
@@ -50,14 +51,9 @@ in {
         enable = true;
       };
 
+      programs.fzf = { enable = true; };
 
-      programs.fzf = {
-        enable = true;
-      };
-
-      programs.ripgrep = {
-        enable = true;
-      };
+      programs.ripgrep = { enable = true; };
 
       programs.zsh.shellAliases = { v = "nvim"; };
     };

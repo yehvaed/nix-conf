@@ -2,12 +2,10 @@
 let inherit (builtins) readFile;
 in {
   nix-config.apps.rofi = {
-    home = { pkgs, ...}: {
+    home = { pkgs, ... }: {
       programs.rofi = {
-          extraConfig = {
-            modi = "drun";
-          };
-          enable = true;
+        extraConfig = { modi = "drun"; };
+        enable = true;
       };
     };
 

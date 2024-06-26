@@ -16,9 +16,12 @@ let
 
 in {
   nix-config.apps.nvim = {
-    home = { pkgs, ... }: {
+    home = { pkgs, ... }: 
+    let
+      extraPlugins = import ./pkgs.nix { inherit pkgs; };
+    in {
       programs.neovim = {
-        plugins = with pkgs.vimPlugins; [
+        plugins = (with pkgs.vimPlugins; [
           # editors     
           (withConfigFile nvim-cmp ./plugins/editor/nvim-cmp.lua)
           (withConfigFile nvim-lspconfig ./plugins/editor/nvim-lspconfig.lua)
@@ -38,7 +41,13 @@ in {
 
           # icons
           nvim-web-devicons
-        ];
+
+          # others
+          plenary-nvim
+        ]) 
+        ++ (with extraPlugins; [
+          (withConfig refactoring-nvim "lua" "require('refactoring').setup({})")
+        ]);
 
         extraPackages =
           import ./plugins/editor/nvim-lspconfig.nix { inherit pkgs; };

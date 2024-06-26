@@ -9,6 +9,6 @@ in {
       };
     };
 
-    tags = [ "xmonad" "rofi" ];
+    tags = [ "xmonad" ];
   };
 }
